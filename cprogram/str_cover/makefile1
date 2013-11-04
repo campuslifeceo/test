@@ -1,0 +1,8 @@
+str_cover:str_cover_Omn.cpp
+	g++ -o str_cover str_cover_Omn.cpp
+
+clean:
+	rm -r str_cover
+
+exe:
+	./str_cover
