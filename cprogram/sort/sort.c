@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <time.h>
 #include "non_recursive_heapsort.c"
+#include "quick_sort.cpp"
 #define random(x) (rand()%x)
 #define SEQ_LENGTH 100
 
@@ -44,20 +45,23 @@ int main()
 	int* dest_heap = new int[SEQ_LENGTH];
 
 	int* dest_nonrecursiveheap = new int[SEQ_LENGTH];
+	int* dest_quicksort = new int[SEQ_LENGTH];
 	for( k=0; k<SEQ_LENGTH; k++)
 	{
 		dest_heap[k] = seq[k];
 		dest_nonrecursiveheap[k] = seq[k];
+		dest_quicksort[k] = seq[k];
 	}
 	heap_sort(dest_heap, SEQ_LENGTH);
 	non_recursive_heapsort(dest_nonrecursiveheap, SEQ_LENGTH);
-
+	quick_sort(dest_quicksort, SEQ_LENGTH);
 	
 
 	delete []dest_heap;
 	delete []dest;
 	delete []dest_insert;
 	delete []dest_nonrecursiveheap;
+	delete []dest_quicksort;
 	return 0;
 }
 
