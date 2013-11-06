@@ -4,7 +4,8 @@
 using namespace std;
 
 void real_sort(int*, int, int);
-void swap(int&, int&);
+void myswap(int*, int*);
+int partition(int*, int ,int);
 
 void quick_sort(int* dest, int length)
 {
@@ -13,7 +14,7 @@ void quick_sort(int* dest, int length)
 	
 	for(int i=0; i<length; i++)
 	{
-		cout << dest[i] << '\t';
+		cout << dest[i] << "  ";
 	}
 
 	cout << endl;
@@ -25,9 +26,11 @@ void real_sort(int* dest, int low, int high)
 {
 	int q;
 	if(low<high)
+	{
 		q = partition(dest, low, high);
-	real_sort(dest, low, q-1);
-	real_sort(dest, q+1, high);
+		real_sort(dest, low, q-1);
+		real_sort(dest, q+1, high);
+	}
 }
 
 
@@ -43,24 +46,29 @@ int partition(int* sub_dest, int start_index, int end_index)
 	int primary = 	sub_dest[end_index];
 	int serve_index = start_index -1;
 	int j;
+	int temp;
 	for( j=start_index; j < end_index; j++)
 	{
 		if(sub_dest[j]<primary)
 		{
 			serve_index++;
-			swap(sub_dest[j], sub_dest[serve_index]);
+			temp = sub_dest[serve_index];
+			sub_dest[serve_index] = sub_dest[j];
+			sub_dest[j] = temp;
 		}
 	}
 
-	swap(sub_dest[serve_index+1], sub_dest[end_index]);
+	temp = sub_dest[serve_index+1];
+	sub_dest[serve_index+1] = sub_dest[end_index];
+	sub_dest[end_index] = temp;
 	return serve_index+1;
 }
 
 
-void swap(int& a, int& b)
+void myswap(int* a, int* b)
 {
 	int temp;
-	temp = a;
-	a = b;
-	b = temp;
+	temp = *a;
+	*a = *b;
+	*b = temp;
 }
