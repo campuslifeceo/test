@@ -14,12 +14,12 @@ void func( int ic)
 }
 int main()
 {
-//	for(int i=0; i<10; i++)
-//		func();
-//	const char* ch = "hello";
-//	cout << ch << endl;
-	func(5);
-	int i = 5;
-	func(i);
+//	cout << 'c' - 'a' << endl;
+//	cout << 'b' + 'a' << endl;
+//    int i = char(20);
+//	cout << char(35) - char(12) << endl;
+	int i = '0';
+	cout << i << endl;
+
 	return 0;
 }
