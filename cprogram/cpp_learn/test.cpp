@@ -3,23 +3,94 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include <cstring>
 using namespace std;
 
-void func( int ic)
+struct X;
+struct Y
 {
-	const int& i = ic;
-	ic++;
-	cout << "i=" << i << endl
-		<< "ic=" << ic << endl;
+	void f(X);
+};
+
+struct X
+{
+	private:
+		int i;
+	public:
+		void initialize();
+		friend void g(X*, int);
+		friend void Y::f(X);
+		friend struct Z;
+		friend void h();
+		int	get_x();
+};
+
+int X::get_x()
+{
+	return i;
 }
+
+
+void X::initialize()
+{
+	i = 0;
+}
+
+void g(X* x, int i)
+{
+	x->i = i;
+}
+
+void Y::f(X x)
+{
+	x.i = 47;
+}
+
+struct Z
+{
+	private:
+		int j;
+	public:
+		void initialize();
+		void g(X* x);
+};
+
+void Z::initialize()
+{
+	j = 99;
+}
+
+void Z::g(X* x)
+{
+	x->i += j;
+}
+
+void h()
+{
+	X x;
+	x.i=100;
+}
+
+
 int main()
 {
-//	cout << 'c' - 'a' << endl;
-//	cout << 'b' + 'a' << endl;
-//    int i = char(20);
-//	cout << char(35) - char(12) << endl;
-	int i = '0';
-	cout << i << endl;
-
-	return 0;
+	int a[3] = {1};
+	double *b = new double[3];	
+	cout << sizeof(b) << endl
+		<< sizeof(*b) << endl;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
